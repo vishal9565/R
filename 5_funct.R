@@ -120,3 +120,35 @@
     
 # use profiling to optimize the code
     
+  
+# any(), all() , || , && , not vectorise operation 
+# identical(), | , & ,== are common function and are vectorised operations
+    
+    # exception statements
+    wt_mean <- function(x, w) {
+      if (length(x) != length(w)) {
+        stop("`x` and `w` must be the same length", call. = FALSE)
+      }
+      sum(w * x) / sum(w)
+    }
+    
+# explicit returns------------------------------------------------------------
+    complicated_function <- function(x, y, z) {
+      if (length(x) == 0 || length(y) == 0) {
+        return(0)
+      }
+    }
+
+
+    # Writing pipeable functions by return invisibly the argument of the function so that 
+    # it can be used in the pipe
+    
+    show_missings <- function(df) {
+      n <- sum(is.na(df))
+      cat("Missing values: ", n, "\n", sep = "")
+      
+      invisible(df)
+    }
+    # TODO: what is this?
+    table(replicate(1000, 1 + 2))
+    

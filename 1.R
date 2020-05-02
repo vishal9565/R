@@ -1,5 +1,8 @@
 ?solve # for help
 
+
+
+
 # create vector should contain element of the same data-type
 x_vec <- c(1,2,3,4,4)
 
@@ -188,7 +191,7 @@ x <- 1:10
   
   
   
-  
+
   
   
   

@@ -190,8 +190,83 @@ x <- 1:10
   lst$na # can use unique substring to specify the given attribute
   
   
+
+# vectors -----------------------------------------------------------------
+  # every vector has two properties: typeof and length
+  # 1) atomic vectors are homgenous
+  # 2) list are heterogenous
   
+  # numeric type
+  c(typeof(1), typeof(1L))
+  
+  # Integer has only one special character
+  c(NA)  # for integer
+  # but double has 3 extra special character
+  c(-1, 0, 1, NA) / 0
+  
+  # use hepler functio  to compare
+  is.finite(1)
+  is.infinite(Inf)
+  is.na(NA)
+  is.nan(NaN)
 
   
+  x <- (sample(20, 100, replace = TRUE)  )
+  y <- x > 10
+  sum(y) # logical converted to integer
+  if( length(y)) "vishal" # integer is converted to logical 
   
+
+# helper function to check vectors ----------------------------------------
+
+  # is_logical 
+  # is_integer
+  # is_double
+  # is_numeric
+  # is_character
+  # is_atomic
+  # is_list
+  # is_vector
+
+# 
+
+# naming a vector ---------------------------------------------------------
+
+  c(x = 1, y = 2, z = 4)
+  purrr::set_names(1:3,c("a","b","c"))
+
+#
+
+# vector subsetting --------------------------------------------------------------
+
+  x <- c(one= "one", "two", "three", "four", "five")
+  x[c(3, 2,2, 5,)]  
+  x[c(-1,-2)]
+  x[] # whole vector
+  x[c(0,0,0,1,1)==1] # logical subsetting
+
+# list --------------------------------------------------------------------
+  x12 <- list(a= 1, 2, 3,TRUE,1L,list("vishal"))
+  
+  # print structure  
+  str(x12)
+  
+
+# list subsetting ---------------------------------------------------------
+
+  a <- list(a = 1:3, b = "a string", c = pi, d = list(-1, -5))
+  str(a[1:2])
+  str(a[4])  
+  # subsetting with logical same as vector subsetting
+  a[["a"]]
+  a$a  
+  
+# attributes
+  attr(a,"name") <-"a list"
+  attributes(a)
+  
+  # generic function
+  methods("as.Date")
+  getS3method("as.Date", "default") # will give the implementation  
+  getS3method("as.Date", "numeric") # on the basis of what is passed as argument
   

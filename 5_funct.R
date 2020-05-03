@@ -1,4 +1,55 @@
-# function and control loops
+library(tidyverse)
+# assigning the vector of size 0 ----------------------------------------------------
+  y <- vector("double", 0)
+  # seq_along is safer way to iterate
+  seq_along(y)
+  # than
+  1:length(y)
+
+  unlist(c(c(1),c(2)))
+  x <- cbind(c(4,3),c(2,1))
+  apply(x,1,sort) # Margin arg is not clear
+  apply(x,2,sort)
+  x[1,]  
+  
+  # purrr function is slightly faster because they are implemented in c
+  
+  map(c(1,23),function(x)x*10)
+  # map_int, map_dbl, map_lgl, map_chr are type of result vector map function 
+  
+  
+  models <- mtcars %>% 
+    split(.$cyl) %>% 
+    map(function(df) lm(mpg ~ wt, data = df))
+  
+  # shortcut way of writing map function and . is just the placeholder for the argument passed
+  models <- mtcars %>% 
+    split(.$cyl) %>% 
+    map(~lm(mpg ~ wt, data = .)) # writing only right side of the function
+  
+  split(mtcars, mtcars$cyl)
+  # lapply is same as map
+  
+  # safely function takes a function and gives its modified form having error, results
+  safe_map <- safely(map)
+  safe_map(c(1,2,3),~.*10)
+  
+  # for extra arguments for 2 extra args similarly map3 for 3 extra args
+  map2(c(1,2,3), c(10,100,1000),function(x,y,n) x*y*n, n = 5) %>% str()
+  
+  purrr::pmap(list(c(1,2,3)),~.*10) # one for args list and other for function
+  # invoke_map is calling different function with different arguments
+  
+  # walk and pwalk are same as map but they show side-effects 
+  
+  # reduce is same as that of python
+  # accumulate function acumulate the result of reduce function
+  
+  # predicate function are function which returns either TRUE or FALSE e.g. is.factor
+  # some is any and every is all in respect to python
+  # detect and detect_index find the arg or index where predicate function is true
+  
+# function and control loops --------------------------------------------------------
 # repeat statement
     count = 1
     repeat{
